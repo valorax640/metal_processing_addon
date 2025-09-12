@@ -1,0 +1,130 @@
+const navLinks = document.querySelectorAll('.nav-links .nav-link');
+let selectedNavLink = null;
+
+navLinks.forEach(link => {
+    link.addEventListener('mouseenter', function () {
+        if (!this.classList.contains('home-btn')) {
+            this.style.borderColor = '#e74c3c';
+        }
+    });
+    link.addEventListener('mouseleave', function () {
+        if (!this.classList.contains('home-btn')) {
+            this.style.borderColor = 'transparent';
+        }
+    });
+    link.addEventListener('click', function (e) {
+        navLinks.forEach(l => {
+            l.classList.remove('home-btn');
+            l.style.borderColor = 'transparent';
+        });
+
+        this.classList.add('home-btn');
+        selectedNavLink = this;
+
+        // Close mobile menu if open
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    });
+});
+
+window.addEventListener('DOMContentLoaded', function () {
+    navLinks.forEach(l => l.classList.remove('home-btn'));
+    
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    let activeLink = null;
+    
+    if (currentPage === 'index.html' || currentPage === '') {
+        activeLink = null;
+    } else {
+        activeLink = document.querySelector(`.nav-links .nav-link[href="./${currentPage}"]`);
+    }
+    
+    if (activeLink) {
+        activeLink.classList.add('home-btn');
+        selectedNavLink = activeLink;
+    }
+});
+
+window.addEventListener('scroll', function () {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(0, 0, 0, 0.95)';
+    } else {
+        header.style.background = 'rgba(0, 0, 0, 0.9)';
+    }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+
+        if (target) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+function animateNumbers() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalNumber = parseInt(target.textContent);
+                const suffix = target.textContent.replace(/[0-9]/g, '');
+
+                let currentNumber = 0;
+                const increment = Math.ceil(finalNumber / 30);
+
+                const timer = setInterval(() => {
+                    currentNumber += increment;
+                    if (currentNumber >= finalNumber) {
+                        currentNumber = finalNumber;
+                        clearInterval(timer);
+                    }
+                    target.textContent = currentNumber + suffix;
+                }, 50);
+
+                observer.unobserve(target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(number => {
+        observer.observe(number);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', animateNumbers);
+
+// Fade-in animation on scroll
+function initFadeInAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initFadeInAnimations);
