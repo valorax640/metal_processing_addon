@@ -1110,19 +1110,25 @@ header {
 
 /* Mobile view - show descriptions by default */
 @media (max-width: 768px) {
-    .card-description {
-        opacity: 1;
-        transform: translateY(0);
+    .card-overlay {
+        height: 70% !important;
+        opacity: 1 !important;
     }
     
-    .card-overlay {
-        opacity: 1;
+    .card-description {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        max-height: 100px !important;
     }
     
     .card-content {
-        bottom: 0px;
+        bottom: 20px;
         left: 20px;
         right: 20px;
+    }
+    
+    .card-title {
+        margin-bottom: 15px;
     }
 }
 
