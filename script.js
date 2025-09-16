@@ -134,6 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => {
         loader.style.display = "none";
-    }, 1500);
+    }, 1000);
 });
 
