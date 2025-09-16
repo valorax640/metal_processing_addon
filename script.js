@@ -32,17 +32,17 @@ navLinks.forEach(link => {
 
 window.addEventListener('DOMContentLoaded', function () {
     navLinks.forEach(l => l.classList.remove('home-btn'));
-    
+
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
+
     let activeLink = null;
-    
+
     if (currentPage === 'index.html' || currentPage === '') {
         activeLink = null;
     } else {
         activeLink = document.querySelector(`.nav-links .nav-link[href="./${currentPage}"]`);
     }
-    
+
     if (activeLink) {
         activeLink.classList.add('home-btn');
         selectedNavLink = activeLink;
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', animateNumbers);
 // Fade-in animation on scroll
 function initFadeInAnimations() {
     const fadeElements = document.querySelectorAll('.fade-in');
-    
+
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -128,3 +128,12 @@ function initFadeInAnimations() {
 }
 
 document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 1500);
+});
+
