@@ -20,7 +20,7 @@ body {
 header {
     background: rgba(0, 0, 0, 0.9) !important;
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .navbar {
@@ -32,6 +32,18 @@ header {
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none !important;
+}
+
+.navbar-logo {
+    height: 70px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links .nav-link {
@@ -305,6 +317,11 @@ header {
         white-space: nowrap;
     }
     
+    .navbar-logo {
+        height: 35px;
+        max-width: 150px;
+    }
+    
     .navbar-toggler {
         border: none;
         padding: 0.25rem 0.5rem;
@@ -419,6 +436,12 @@ header {
 }
 
 @media (max-width: 768px) {
+
+    .hero-video {
+        height: 65vh;
+        min-height: 600px;
+    }
+
     .stat-item:after {
         display: none;
     }
@@ -1034,22 +1057,23 @@ header {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70%;
+    height: 20%;
     pointer-events: none;
     background: linear-gradient(to top,
             rgba(0, 0, 0, 0.9) 0%,
             rgba(0, 0, 0, 0.0) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    opacity: 1;
+    transition: height 0.3s ease, opacity 0.3s ease;
 }
 
 .strength-card:hover .card-overlay {
+    height: 70%;
     opacity: 1;
 }
 
 .card-content {
     position: absolute;
-    bottom: 30px;
+    bottom: 0px;
     left: 30px;
     right: 30px;
     color: white;
@@ -1059,22 +1083,29 @@ header {
 .card-title {
     font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
 }
 
 .card-description {
     font-size: 0.95rem;
     line-height: 1.5;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
     transition: all 0.3s ease;
     text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    margin-top: 15px;
+    max-height: 0;
+    overflow: hidden;
 }
 
 .strength-card:hover .card-description {
     opacity: 1;
     transform: translateY(0);
+    max-height: 100px;
 }
 
 /* Mobile view - show descriptions by default */
@@ -1089,7 +1120,7 @@ header {
     }
     
     .card-content {
-        bottom: 20px;
+        bottom: 0px;
         left: 20px;
         right: 20px;
     }
@@ -1119,7 +1150,7 @@ header {
     }
 
     .card-content {
-        bottom: 20px;
+        bottom: 0px;
         left: 20px;
         right: 20px;
     }
