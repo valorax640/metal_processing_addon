@@ -1,53 +1,62 @@
-const navLinks = document.querySelectorAll('.nav-links .nav-link');
-let selectedNavLink = null;
+// Navigation Links Hover and Click Effects - COMMENTED OUT
+// const navLinks = document.querySelectorAll('.nav-links .nav-link');
+// let selectedNavLink = null;
 
-navLinks.forEach(link => {
-    link.addEventListener('mouseenter', function () {
-        if (!this.classList.contains('home-btn')) {
-            this.style.borderColor = '#e74c3c';
-        }
-    });
-    link.addEventListener('mouseleave', function () {
-        if (!this.classList.contains('home-btn')) {
-            this.style.borderColor = 'transparent';
-        }
-    });
-    link.addEventListener('click', function (e) {
-        navLinks.forEach(l => {
-            l.classList.remove('home-btn');
-            l.style.borderColor = 'transparent';
-        });
+// navLinks.forEach(link => {
+//     // Hover enter effect - adds red border on hover
+//     link.addEventListener('mouseenter', function () {
+//         if (!this.classList.contains('home-btn')) {
+//             this.style.borderColor = '#e74c3c';
+//         }
+//     });
+//     // Hover leave effect - removes border when hover ends
+//     link.addEventListener('mouseleave', function () {
+//         if (!this.classList.contains('home-btn')) {
+//             this.style.borderColor = 'transparent';
+//         }
+//     });
+//     // Click effect - sets active state for clicked nav link
+//     link.addEventListener('click', function (e) {
+//         navLinks.forEach(l => {
+//             l.classList.remove('home-btn');
+//             l.style.borderColor = 'transparent';
+//         });
 
-        this.classList.add('home-btn');
-        selectedNavLink = this;
+//         this.classList.add('home-btn');
+//         selectedNavLink = this;
 
-        // Close mobile menu if open
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        if (navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-        }
-    });
-});
+//         // Close mobile menu if open
+//         const navbarCollapse = document.querySelector('.navbar-collapse');
+//         if (navbarCollapse.classList.contains('show')) {
+//             const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+//             bsCollapse.hide();
+//         }
+//     });
+// });
 
-window.addEventListener('DOMContentLoaded', function () {
-    navLinks.forEach(l => l.classList.remove('home-btn'));
+// Navigation Active State Management - COMMENTED OUT
+// window.addEventListener('DOMContentLoaded', function () {
+//     // Clear all active nav states on page load
+//     navLinks.forEach(l => l.classList.remove('home-btn'));
 
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+//     // Get current page from URL
+//     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
-    let activeLink = null;
+//     let activeLink = null;
 
-    if (currentPage === 'index.html' || currentPage === '') {
-        activeLink = null;
-    } else {
-        activeLink = document.querySelector(`.nav-links .nav-link[href="./${currentPage}"]`);
-    }
+//     // Set active link based on current page
+//     if (currentPage === 'index.html' || currentPage === '') {
+//         activeLink = null;
+//     } else {
+//         activeLink = document.querySelector(`.nav-links .nav-link[href="./${currentPage}"]`);
+//     }
 
-    if (activeLink) {
-        activeLink.classList.add('home-btn');
-        selectedNavLink = activeLink;
-    }
-});
+//     // Apply active state to current page nav link
+//     if (activeLink) {
+//         activeLink.classList.add('home-btn');
+//         selectedNavLink = activeLink;
+//     }
+// });
 
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
@@ -58,22 +67,24 @@ window.addEventListener('scroll', function () {
     }
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+// Smooth Scroll for Anchor Links - COMMENTED OUT
+// document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//     // Prevent default anchor link behavior and add smooth scrolling
+//     anchor.addEventListener('click', function (e) {
+//         e.preventDefault();
+//         const target = document.querySelector(this.getAttribute('href'));
 
-        if (target) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight - 20;
+//         if (target) {
+//             const headerHeight = document.querySelector('header').offsetHeight;
+//             const targetPosition = target.offsetTop - headerHeight - 20;
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+//             window.scrollTo({
+//                 top: targetPosition,
+//                 behavior: 'smooth'
+//             });
+//         }
+//     });
+// });
 
 function animateNumbers() {
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -108,6 +119,17 @@ function animateNumbers() {
 }
 
 document.addEventListener('DOMContentLoaded', animateNumbers);
+
+// DISABLE ALL NAVIGATION LINK CLICKS - UNCOMMENT TO ACTIVATE
+// document.addEventListener('DOMContentLoaded', function() {
+//     const navLinks = document.querySelectorAll('.nav-links .nav-link');
+//     navLinks.forEach(link => {
+//         link.addEventListener('click', function(e) {
+//             e.preventDefault(); // Prevents navigation
+//             return false; // Additional prevention
+//         });
+//     });
+// });
 
 // Fade-in animation on scroll
 function initFadeInAnimations() {
