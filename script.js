@@ -151,13 +151,13 @@ function initFadeInAnimations() {
 
 document.addEventListener('DOMContentLoaded', initFadeInAnimations);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const loader = document.getElementById("loader");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const loader = document.getElementById("loader");
 
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 1000);
-});
+//     setTimeout(() => {
+//         loader.style.display = "none";
+//     }, 1000);
+// });
 
 // Mobile Drawer Functionality
 document.addEventListener("DOMContentLoaded", function () {
