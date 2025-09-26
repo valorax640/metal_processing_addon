@@ -159,3 +159,56 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
 });
 
+// Mobile Drawer Functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerClose = document.getElementById('drawerClose');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    // Open drawer
+    function openDrawer() {
+        mobileDrawer.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    // Close drawer
+    function closeDrawer() {
+        mobileDrawer.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Event listeners
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', openDrawer);
+    }
+
+    if (drawerClose) {
+        drawerClose.addEventListener('click', closeDrawer);
+    }
+
+    if (drawerOverlay) {
+        drawerOverlay.addEventListener('click', closeDrawer);
+    }
+
+    // Close drawer when clicking on nav links
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', closeDrawer);
+    });
+
+    // Close drawer on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('active')) {
+            closeDrawer();
+        }
+    });
+
+    // Close drawer on window resize to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992 && mobileDrawer.classList.contains('active')) {
+            closeDrawer();
+        }
+    });
+});
+
